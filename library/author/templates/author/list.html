@@ -1,38 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Your Page Title</title>
-</head>
-<body>
-    <h1>author</h1>
-    <table border="1px solid " width ="100%">
+ {% extends "base.html" %}
+ {% comment %}
+{% block title %}
+    Your Page author
+    <table border="1px solid " width="100%" height="100%">
+        <tr>
+            <td colspan="9">
+                <h1> header </h1>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table>
 
+                    <h1>author list</h1>
+                    <table border="1px solid " width ="100%">
+                
+                <tr>
+                
+                    <th>ID</th>
+                    <th> NAME </th>
+                    <th>Action</th>
+                </tr>
+                {%for author in authors%}
+                
+                <tr>
+                
+                        <td>  {{author.id }} </td>
+                        <td>  {{author.name }} </td>
+                        <td>      
+                            <a href="{%url  'author_update' author.id %}">Update</a>
+                            <a href="{%url  'author_delete' author.id %}">   Delete   <a/>
+                            <a href="{%url  'author_delete' author.id %}">  Show details</a
+                        </td>
+                </tr>
+                <tr>
+                </tr>
+                {%endfor%}
+                
+                    </table>
+{% endblock %}
+{%block content%}
+
+{%endblock%}
+ {% endcomment %}
+ {% comment %} {% extends "base.html" %} {% endcomment %}
+{% comment %} 
+{% block title %}
+    Author List
+{% endblock %}
+
+{% block content %}
+    <h1>Author List</h1>
+    <table border="1px solid" width="100%">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+        {% for author in authors %}
+        <tr>
+            <td>{{ author.id }}</td>
+            <td>{{ author.name }}</td>
+            <td>
+                <a href="{% url 'author_update' author.id %}">Update</a>
+                <a href="{% url 'author_delete' author.id %}">Delete</a>
+                <a href="{% url 'author_detail' author.id %}">Show details</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+ {% endcomment %} 
+
+
+
+ {% comment %} {%extends 'base.html'%} {% endcomment %}
+{%block 'title'%}
+Author - List
+{%endblock%}
+{%block 'content'%}
+<h1>author list</h1>
+<!--{{authors}}-->
+<table border="1px solid" width="100%"
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+ {%for author in authors%}
 <tr>
+    <td>{{author.id}}</td>
+    <td>{{author.name}}</td>
+    <td>
 
-    <th>ID</th>
-    <th> NAME </th>
-    <th>Action</th>
+        <a href="{%url 'author_update' author.id%}">Update</a>
+        <a href="{%url 'author_delete' author.id%}">Delete</a>
+        <a href="">show details</a>
+    </td>
 </tr>
-{%for author in authors%}
 
-<tr>
-
-        <td>  {{author.id }} </td>
-        <td>  {{author.name }} </td>
-        <td>      
-            <a href="{%url  'author_update' author.id %}">Update</a>
-            <a href="{%url  'author_delete' author.id %}">   Delete   <a/>
-            <a href="{%url  'author_delete' author.id %}">  Show details</a
-        </td>
-</tr>
-<tr>
-</tr>
 {%endfor%}
 
-    </table>
-    </br>
-</body>
-</html>
+</table>
+{%endblock%}

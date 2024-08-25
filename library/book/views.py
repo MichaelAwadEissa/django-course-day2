@@ -19,3 +19,6 @@ def book_update(request,id):
     print(id,type)
     print(request)
     return HttpResponse(f"Book update page {id}")  # Returns a simple HTTP response
+def test_base(request):
+    # Attempt to render the 'base.html' template
+    return render(request, 'base.html')
